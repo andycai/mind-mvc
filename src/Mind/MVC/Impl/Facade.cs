@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using Mind.MVC.API;
+using Mind.Utils;
 
 namespace Mind.MVC.Impl
 {
@@ -11,23 +12,19 @@ namespace Mind.MVC.Impl
     /// </summary>
     public class Facade : IFacade
     {
-        protected static IFacade instance;
         protected readonly ConcurrentDictionary<string, IList<IObserver>> observerMap;
 
         public Facade()
         {
-            if (instance != null) throw new Exception("Facade Singleton already constructed.");
-
             observerMap = new ConcurrentDictionary<string, IList<IObserver>>(); 
         }
 
-        public static IFacade GetInstance()
+        public static Facade Instance
         {
-            if (instance == null)
-            {
-                instance = new Facade();
-            }
-            return instance;
+			get
+			{
+				return Singleton<Facade>.Instance;
+			}
         }
 
         public void SendNotification(string name, object body = null, string type = null)

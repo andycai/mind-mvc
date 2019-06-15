@@ -8,15 +8,7 @@ namespace Mind.MVC.Impl
     /// </summary>
     public class Controller : Notifier, IController
     {
-        public string Name { get; set; }
-        public IView View { get; set; }
-
-        public Controller()
-        {
-            //Name = name;
-        }
-
-        protected IHandler NewHandler(string name, Action<INotification> func)
+		protected IHandler NewHandler(string name, Action<INotification> func)
         {
             return new Handler(name, func);
         }

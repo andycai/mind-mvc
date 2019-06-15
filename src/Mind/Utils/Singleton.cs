@@ -9,22 +9,25 @@
     /// <typeparam name="T"></typeparam>
     public class Singleton<T> where T : class, new() 
     {
-        private static T instance;
+        private static T _instance;
         private static readonly object syslock = new object();
 
-        public static T GetInstance()
+        public static T Instance
         {
-            if (instance == null)
-            {
-                lock (syslock)
-                {
-                    if (instance == null)
-                    {
-                        instance = new T();
-                    }
-                }
-            }
-            return instance;
+			get
+			{
+				if (_instance == null)
+				{
+					lock (syslock)
+					{
+						if (_instance == null)
+						{
+							_instance = new T();
+						}
+					}
+				}
+				return _instance;
+			}
         }
     }
 }

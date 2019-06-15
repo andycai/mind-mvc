@@ -9,7 +9,7 @@ namespace Mind.MVC.Impl
     {
         public void SendNotification(string name, object body = null, string type = null)
         {
-            Facade.GetInstance().SendNotification(name, body, type);
+            Facade.Instance.SendNotification(name, body, type);
         }
     }
 }
