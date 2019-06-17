@@ -13,17 +13,18 @@ namespace Mind.MVC.Impl
             return new Handler(name, func);
         }
 
+		/// <summary>
+		/// 返回订阅的消息数组
+		/// </summary>
         public virtual IHandler[] ListNotification()
         {
             return new IHandler[0];
         }
 
+		/// <summary>
+		/// 控制器实例化后调用的方法，只调用一次
+		/// </summary>
         public virtual void OnRegister()
-        {
-            //
-        }
-
-        public virtual void OnRemove()
         {
             //
         }

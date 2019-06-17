@@ -1,12 +1,12 @@
 ﻿namespace Mind.Utils
 {
     /// <summary>
+	/// 单例模式
     /// 1. public class NewClass : Singleton<NewClass>
     /// 2. public static NewClass GetInstance() {
     ///         return Singleton<NewClass>.GetInstance();
     ///    }
     /// </summary>
-    /// <typeparam name="T"></typeparam>
     public class Singleton<T> where T : class, new() 
     {
         private static T _instance;

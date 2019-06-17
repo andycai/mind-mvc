@@ -17,11 +17,18 @@ namespace Mind.MVC.Impl
             NotifyContext = notifyContext;
         }
 
+		/// <summary>
+		/// 通知观察者
+		/// </summary>
+		/// <param name="notification"></param>
         public virtual void NotifyObserver(INotification notification)
         {
             NotifyMethod(notification);
         }
 
+		/// <summary>
+		/// 比较两个观察者，通过上下文来比较
+		/// </summary>
         public virtual bool CompareNotifyContext(object notifyContext)
         {
             return NotifyContext.Equals(notifyContext);

@@ -4,6 +4,5 @@
     {
         IHandler[] ListNotification();
         void OnRegister();
-        void OnRemove();
     }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using Mind.MVC.API;
-using Mind.Utils;
 
 namespace Mind.MVC.Impl
 {
@@ -27,11 +26,17 @@ namespace Mind.MVC.Impl
 			}
         }
 
+		/// <summary>
+		/// 发送消息
+		/// </summary>
         public void SendNotification(string name, object body = null, string type = null)
         {
             NotifyObservers(new Notification(name, body, type));
         }
 
+		/// <summary>
+		/// 注册模块（控制器）
+		/// </summary>
         public void RegisterObserver(IController controller)
         {
             IHandler[] handlers = controller.ListNotification();
@@ -56,6 +61,9 @@ namespace Mind.MVC.Impl
             controller.OnRegister();
         }
 
+		/// <summary>
+		/// 移除注册的消息
+		/// </summary>
         public void RemoveObserver(string notificationName, object notifyContext)
         {
             if (observerMap.TryGetValue(notificationName, out IList<IObserver> observers))
@@ -76,6 +84,9 @@ namespace Mind.MVC.Impl
             }
         }
 
+		/// <summary>
+		/// 批量注册消息
+		/// </summary>
         public void RegisterObservers(IController[] controllers)
         {
             foreach (IController controller in controllers)
@@ -84,6 +95,9 @@ namespace Mind.MVC.Impl
             }
         }
 
+		/// <summary>
+		/// 通知所有订阅消息的观察者
+		/// </summary>
         public void NotifyObservers(INotification notification)
         {
             if (observerMap.TryGetValue(notification.Name, out IList<IObserver> observers_ref))
